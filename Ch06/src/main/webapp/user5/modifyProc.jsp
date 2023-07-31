@@ -1,3 +1,6 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="vo.User5VO"%>
 <%@ page import="java.sql.Connection"%>
@@ -19,18 +22,14 @@
 		String address = request.getParameter("address");
 		String hp = request.getParameter("hp");
 		
-
-		// 데이터베이스 처리
-		String host = "jdbc:mysql://127.0.0.1:3306/userdb";
-		String user = "root";
-		String pass = "1234";
-		
 		try{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(host, user, pass);
-		PreparedStatement psmt 
-		= conn.prepareStatement
-		("UPDATE `user5` SET `name`=?, `birthday`=?, `gender`=?, `age`=?, `address`=?, `hp`=? WHERE `uid`=?");
+		Context initCtx = new InitialContext();
+		Context ctx = (Context) initCtx.lookup("java:comp/env");
+		
+		DataSource ds = (DataSource) ctx.lookup("jdbc/userdb");
+		Connection conn = ds.getConnection();
+			
+		PreparedStatement psmt = conn.prepareStatement("UPDATE `user5` SET `name`=?, `birthday`=?, `gender`=?, `age`=?, `address`=?, `hp`=? WHERE `uid`=?");
 
 		psmt.setString(1, name);
 		psmt.setString(2, birthday);

@@ -1,3 +1,6 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
 <%@page import="java.sql.Connection"%>
 <%@ page import="vo.User2VO"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -14,13 +17,21 @@
 	String age = request.getParameter("age"); 
 	
 	// 데이터베이스 처리
-	String host = "jdbc:mysql://127.0.0.1:3306/userdb";
-	String user = "root";
-	String pass = "1234";
-	
 	try{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(host, user, pass);
+		//Class.forName("com.mysql.cj.jdbc.Driver");
+		//Connection conn = DriverManager.getConnection(host, user, pass);
+		
+		// JNDI 서비스 객체 생성
+		
+		Context initctx = new InitialContext();
+		Context ctx = (Context) initctx.lookup("java:comp/evn");
+		
+		// 커넥션 풀에서 커넥션 가져오기
+		
+		DataSource ds = (DataSource) ctx.lookup("jdbc/userdb");
+		Connection conn = ds.getConnection();
+		
+		
 		PreparedStatement psmt = conn.prepareStatement("UPDATE `user2` SET `name`=?, `hp`=?, `age`=? WHERE `uid`=?");
 		
 		psmt.setString(1, name);

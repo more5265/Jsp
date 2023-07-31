@@ -1,3 +1,6 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.Context"%>
+<%@page import="javax.naming.InitialContext"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
@@ -17,15 +20,16 @@
 		String address = request.getParameter("address");
 		String hp = request.getParameter("hp");
 	
-	// 데이터베이스 처리
-	String host = "jdbc:mysql://127.0.0.1:3306/userdb";
-	String user = "root";
-	String pass = "1234";
+	// 데이터베이스 처리 X
 			
 	
 	try{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(host, user, pass);
+		Context initCtx = new InitialContext();
+		Context ctx = (Context) initCtx.lookup("java:comp/env");
+		
+		DataSource ds = (DataSource) ctx.lookup("jdbc/userdb");
+		Connection conn = ds.getConnection();
+		
 		PreparedStatement psmt = conn.prepareStatement("INSERT INTO `user5` VALUES (?,?,?,?,?,?,?)");
 		
 		psmt.setString(1, uid);
@@ -40,8 +44,7 @@
 		
 		psmt.close();
 		conn.close();
-		
-		response.sendRedirect("/Ch06/user5/list.jsp");
+	
 		
 	}catch(Exception e){
 		e.printStackTrace();
