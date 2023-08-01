@@ -23,7 +23,9 @@
 		
 		<a href="/Ch06/user5/register.jsp">User5 CRUD 실습</a><br>
 		
-		<a href="/Ch06/member/register.jsp">Member CRUD 실습</a>
+		<a href="/Ch06/member/register.jsp">Member CRUD 실습</a><br>
+		
+		<a href="/Ch06/user6/register.jsp">User6 실습</a>
 		
 	</body>
 </html>
