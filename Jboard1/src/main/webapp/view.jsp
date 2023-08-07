@@ -1,86 +1,79 @@
+<%@page import="kr.co.jboard1.dao.UserDAO"%>
+<%@page import="kr.co.jboard1.vo.ArticleVO"%>
+<%@page import="kr.co.jboard1.dao.ArticleDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="kr.co.jboard1.vo.UserVO"%>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>글보기</title>
-    <link rel="stylesheet" href="./css/style.css">
+<%@ include file="./_header.jsp"%>
+<%
 
-</head>
-<body>
-    <div id="container">
-        <header>
-            <h3>Board System v1.0</h3>
-            <p>
-                OOO님 반갑습니다.
-                <a href="#" class="logout">[로그아웃]</a>
-            </p>
-        </header>
-        <main>
-            <section class="view">
-                <h3>글보기</h3>
-                <table>
-                    <tr>
-                        <td>제목</td>
-                        <td><input type="text" name="title" value="제목입니다." readonly/></td>
-                    </tr>
-                    <tr>
-                        <td>첨부파일</td>
-                        <td>
-                            <a href="#">2020년 상반기 매출자료.xls</a>
-                            <span>7회 다운로드</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>내용</td>
-                        <td>
-                            <textarea name="content" readonly>내용 샘플입니다.</textarea>
-                        </td>
-                    </tr>
-                </table>
-                <div>
-                    <a href="#" class="btnDelete">삭제</a>
-                    <a href="#" class="btnModify">수정</a>
-                    <a href="#" class="btnList">목록</a>
-                </div>  
-                
-                <!-- 댓글리스트 -->
-                <section class="commentList">
-                    <h3>댓글목록</h3>
-                    <article class="comment">
-                        <span>
-                            <span>길동이</span>
-                            <span>20-05-13</span>
-                        </span>
-                        <textarea name="comment" readonly>댓글 샘플입니다.</textarea>
-                        <div>
-                            <a href="#">삭제</a>
-                            <a href="#">수정</a>
-                        </div>
-                    </article>
-                    <p class="empty">
-                        등록된 댓글이 없습니다.
-                    </p>
-                </section>
+	int articleNo = 0;
+
+	String articleNoStr = request.getParameter("no");
+	if (articleNoStr != null && !articleNoStr.isEmpty()) {
+		articleNo = Integer.parseInt(articleNoStr);
+	}
+	
+	
+	ArticleDAO articleDAO = new ArticleDAO();
+	ArticleVO article = articleDAO.selectArticle(articleNo);
     
-                <!-- 댓글입력폼 -->
-                <section class="commentForm">
-                    <h3>댓글쓰기</h3>
-                    <form action="#">
-                        <textarea name="comment"></textarea>
-                        <div>
-                            <a href="#" class="btnCancel">취소</a>
-                            <input type="submit" class="btnWrite" value="작성완료"/>
-                        </div>
-                    </form>
-                </section>
-    
-            </section>
-        </main>
-        <footer>
-            <p>ⓒ Copyright by HSLee.com</p>
-        </footer>
-    </div>
-</body>
-</html>
+	// 작성자의 닉네임을 가져오기 위해 UserDAO를 사용
+    if (article == null) {
+        out.println("해당 게시물을 찾을 수 없습니다.");
+    } else {
+        UserDAO userDAO = UserDAO.getInstance(); 
+        UserVO writer = userDAO.selectUser(article.getWriter(), "");
+%>
+
+<main>
+	<section class="view">
+		<h3>글보기</h3>
+		<table>
+			<tr>
+				<td>제목</td>
+				<td><input type="text" name="title" value="<%= article.getTitle() %>" readonly /></td>
+			</tr>
+			<tr>
+				<td>첨부파일</td>
+				<td><a href="#">2020년 상반기 매출자료.xls</a> <span>7회 다운로드</span></td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td><textarea name="content" readonly><%= article.getContent() %></textarea></td>
+			</tr> 
+		</table>
+		<div>
+			<a href="#" class="btnDelete">삭제</a> <a href="#" class="btnModify">수정</a>
+			<a href="/Jboard1/list.jsp" class="btnList">목록</a>
+		</div>
+
+		<!-- 댓글리스트 -->
+		<section class="commentList">
+			<h3>댓글목록</h3>
+			<article class="comment">
+				<span> <span>길동이</span> <span>20-05-13</span>
+				</span>
+				<textarea name="comment" readonly>댓글 샘플입니다.</textarea>
+				<div>
+					<a href="#">삭제</a> <a href="/Jboard1/modify.jsp">수정</a>
+				</div>
+			</article>
+			<p class="empty">등록된 댓글이 없습니다.</p>
+		</section>
+
+		<!-- 댓글입력폼 -->
+		<section class="commentForm">
+			<h3>댓글쓰기</h3>
+			<form action="#">
+				<textarea name="comment"></textarea>
+				<div>
+					<a href="/Jboard1/list.jsp" class="btnCancel">취소</a> <input type="submit"
+						class="btnWrite" value="작성완료" />
+				</div>
+			</form>
+		</section>
+
+	</section>
+</main>
+<%@ include file="./_footer.jsp"%>
