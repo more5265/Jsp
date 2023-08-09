@@ -1,14 +1,13 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="kr.co.jboard1.vo.TermsVO"%>
+<%@page import="kr.co.jboard1.dto.TermsDTO"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="javax.sql.DataSource"%>
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="javax.naming.Context"%>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-
-	TermsVO vo = new TermsVO();
+TermsDTO vo = new TermsDTO();
 
 	try{
 		Context initCtx = new InitialContext();
@@ -20,8 +19,8 @@
 		ResultSet rs = stmt.executeQuery("SELECT * FROM `terms`");
 		
 		if(rs.next()){
-			vo.setTerms(rs.getString("terms"));
-			vo.setPrivacy(rs.getString("privacy"));
+	vo.setTerms(rs.getString("terms"));
+	vo.setPrivacy(rs.getString("privacy"));
 		}
 		
 		
@@ -32,8 +31,6 @@
 	}catch(Exception e){
 		e.printStackTrace();
 	}
-
-
 %>
 <!DOCTYPE html>
 <html lang="en">
