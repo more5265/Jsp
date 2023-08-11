@@ -1,6 +1,15 @@
+<%@page import="kr.co.jboard1.dto.ArticleDTO"%>
+<%@page import="kr.co.jboard1.dao.ArticleDAO"%>
 <%@page import="kr.co.jboard1.dto.UserDTO"%>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String no = request.getParameter("no");	
+
+	ArticleDAO dao = new ArticleDAO();
+	ArticleDTO dto = dao.selectArticle(no);
+%>
 <main>
 	<section class="modify">
 		<h3>글수정</h3>

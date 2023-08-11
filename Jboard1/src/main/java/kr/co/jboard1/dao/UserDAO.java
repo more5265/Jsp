@@ -2,6 +2,7 @@ package kr.co.jboard1.dao;
 
 import kr.co.jboard1.db.DBHelper;
 import kr.co.jboard1.db.SQL;
+import kr.co.jboard1.dto.TermsDTO;
 import kr.co.jboard1.dto.UserDTO;
 
 public class UserDAO extends DBHelper {
@@ -11,11 +12,10 @@ public class UserDAO extends DBHelper {
 		return instance;
 	}
 	private UserDAO() {}
-	
+
 	public void insertUser(UserDTO dto) {
 		try {
 			conn = getConnection();
-			
 			psmt = conn.prepareStatement(SQL.INSERT_USER);
 			psmt.setString(1, dto.getUid());
 			psmt.setString(2, dto.getPass());
@@ -30,15 +30,13 @@ public class UserDAO extends DBHelper {
 			psmt.executeUpdate();
 			close();
 			
-		}catch(Exception e) {
+		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
 	}
 	public UserDTO selectUser(String uid, String pass) {
 		UserDTO user = null;
-		
-		try{
+		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.SELECT_USER);
 			psmt.setString(1, uid);
@@ -62,7 +60,6 @@ public class UserDAO extends DBHelper {
 				user.setLeaveDate(rs.getString(13));
 			}
 			close();
-			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -70,7 +67,6 @@ public class UserDAO extends DBHelper {
 	}
 	public int selectCountUid(String uid) {
 		int result = 0;
-		
 		try{
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.SELECT_COUNT_UID);
@@ -81,7 +77,6 @@ public class UserDAO extends DBHelper {
 				result = rs.getInt(1);
 			}
 			close();
-			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -89,7 +84,6 @@ public class UserDAO extends DBHelper {
 	}
 	public int selectCountNick(String nick) {
 		int result = 0;
-		
 		try{
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.SELECT_COUNT_NICK);
@@ -99,9 +93,7 @@ public class UserDAO extends DBHelper {
 			if(rs.next()){
 				result = rs.getInt(1);
 			}
-			
-			close();
-	
+			close();			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -114,11 +106,13 @@ public class UserDAO extends DBHelper {
 			psmt = conn.prepareStatement(SQL.SELECT_COUNT_HP);
 			psmt.setString(1, hp);
 			rs = psmt.executeQuery();
+			
 			if(rs.next()){
 				result = rs.getInt(1);
 			}
+			
 			close();
-
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -131,28 +125,37 @@ public class UserDAO extends DBHelper {
 			psmt = conn.prepareStatement(SQL.SELECT_COUNT_EMAIL);
 			psmt.setString(1, email);
 			rs = psmt.executeQuery();
+			
 			if(rs.next()){
 				result = rs.getInt(1);
 			}
-			
 			close();
-
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return result;
 	}
+	public TermsDTO selectTerms() {
+		TermsDTO dto = new TermsDTO();
+
+		try{
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(SQL.SELECT_TERMS);
+			
+			if(rs.next()){
+				dto.setTerms(rs.getString(1));
+				dto.setPrivacy(rs.getString(2));
+			}
+			close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return dto;
+	}
 	
-	public void selectsUser() {
-
-	}
-	public void updateUser() {
-		
-	}
-	public void deleteUser() {
-		
-	}
-
+	public void selectUsers() {}
+	public void updateUser() {}
+	public void deleteUser() {}
+	
 }
-
-

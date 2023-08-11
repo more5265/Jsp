@@ -20,7 +20,7 @@
 	//댓글 입력
 	dao.insertComment(dto);
 	//댓글 카운트
-	dao.updateAticleForComment(parent);
+	dao.updateAticleForCommentPlus(parent);
 	
 	//리다이렉트
 	response.sendRedirect("/Jboard1/view.jsp?no="+parent);
