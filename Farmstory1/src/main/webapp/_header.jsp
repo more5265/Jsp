@@ -1,7 +1,7 @@
 <%@page import="kr.farmstory1.dto.UserDTO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	UserDTO sessUer = (UserDTO) session.getAttribute("sessUser");
+	UserDTO sessUser = (UserDTO) session.getAttribute("sessUser");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +36,12 @@
             <p>
                 <a href="/Farmstory1/index.jsp">HOME |</a>
                 
-                <% if(sessUer == null){ %>
+                <% if(sessUser == null){ %>
                 <a href="/Farmstory1/user/login.jsp">로그인 |</a>
                 <a href="/Farmstory1/user/terms.jsp">회원가입 |</a>
                 <% }else{ %>
                 <a href="/Farmstory1/user/logout.jsp">로그아웃 |</a>
-                	<% if( !sessUer.getRole().equals("USER")){ %>
+                	<% if( !sessUser.getRole().equals("USER")){ %>
                 	<a href="/Farmstory1/admin/">관리자 |</a>
                 	<% } %>
                 <% } %>
@@ -52,8 +52,8 @@
             <ul class="gnb">
                 <li><a href="/Farmstory1/introduction/hello.jsp">팜스토리소개</a></li>
                 <li><a href="/Farmstory1/market/list.jsp"><img src="/Farmstory1/images/head_menu_badge.png" alt="30%"/>장보기</a></li>
-                <li><a href="/Farmstory1/croptalk/story.jsp">농작물이야기</a></li>
-                <li><a href="/Farmstory1/event/event.jsp">이벤트</a></li>
-                <li><a href="/Farmstory1/community/notice.jsp">커뮤니티</a></li>
+                <li><a href="/Farmstory1/board/list.jsp?group=Croptalk&cate=story">농작물이야기</a></li>
+                <li><a href="/Farmstory1/board/list.jsp?group=Event&cate=event">이벤트</a></li>
+                <li><a href="/Farmstory1/board/list.jsp?group=Community&cate=notice">커뮤니티</a></li>
             </ul>
         </header>

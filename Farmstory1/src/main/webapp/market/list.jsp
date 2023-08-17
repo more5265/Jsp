@@ -107,6 +107,5 @@
 
                 </article>
             </section>
-
         </div>
 <%@ include file="../_footer.jsp" %>

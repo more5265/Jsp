@@ -2,13 +2,13 @@
 <%@ include file="../_header.jsp" %>
 
         <div id="sub">
-            <div><img src="../images/sub_top_tit4.png" alt="CROP TALK"></div>
+            <div><img src="../images/sub_top_tit4.png" alt="EVENT"></div>
             <section class="event">
                 <aside>
                     <img src="../images/sub_aside_cate4_tit.png" alt="이벤트"/>
 
                     <ul class="lnb">
-                        <li class="on"><a href="./grow.html">이벤트</a></li>
+                        <li class="on"><a href="./list.jsp?group=event">이벤트</a></li>
                     </ul>
 
                 </aside>

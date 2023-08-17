@@ -5,7 +5,6 @@ import kr.farmstory1.db.SQL;
 import kr.farmstory1.dto.TermsDTO;
 import kr.farmstory1.dto.UserDTO;
 
-
 public class UserDAO extends DBHelper {
 	
 	private static UserDAO instance = new UserDAO();
@@ -14,6 +13,7 @@ public class UserDAO extends DBHelper {
 	}
 	private UserDAO() {}
 
+	// 기본 CRUD 
 	public void insertUser(UserDTO dto) {
 		try {
 			conn = getConnection();
@@ -36,7 +36,9 @@ public class UserDAO extends DBHelper {
 		}
 	}
 	public UserDTO selectUser(String uid, String pass) {
+		
 		UserDTO user = null;
+		
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.SELECT_USER);
@@ -44,7 +46,8 @@ public class UserDAO extends DBHelper {
 			psmt.setString(2, pass);
 			rs = psmt.executeQuery();
 			
-			if(rs.next()){
+			if(rs.next()) {
+				
 				user = new UserDTO();
 				user.setUid(rs.getString(1));
 				user.setPass(rs.getString(2));
@@ -61,11 +64,18 @@ public class UserDAO extends DBHelper {
 				user.setLeaveDate(rs.getString(13));
 			}
 			close();
-		}catch(Exception e){
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return user;
 	}
+	
+	public void selectUsers() {}
+	public void updateUser() {}
+	public void deleteUser() {}
+	
+	// 추가
 	public int selectCountUid(String uid) {
 		int result = 0;
 		try{
@@ -136,6 +146,7 @@ public class UserDAO extends DBHelper {
 		}
 		return result;
 	}
+	
 	public TermsDTO selectTerms() {
 		TermsDTO dto = new TermsDTO();
 
@@ -154,9 +165,5 @@ public class UserDAO extends DBHelper {
 		}
 		return dto;
 	}
-	
-	public void selectUsers() {}
-	public void updateUser() {}
-	public void deleteUser() {}
 	
 }
