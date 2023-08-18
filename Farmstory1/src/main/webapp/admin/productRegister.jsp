@@ -32,77 +32,54 @@
                     <li><a href="#">회원관리</a></li>                    
                 </ul>
             </aside>
-            <section id="productRegister">
+            <section id="productList">
                 <nav>
-                    <h3>상품등록</h3>
+                    <h3>상품목록</h3>
                 </nav>
 
                 <article>
-                    <form action="#" method="post">
-                        <table border="0">
-                            <tr>
-                                <td>상품명</td>
-                                <td><input type="text" name="productName"/></td>
-                            </tr>
-                            <tr>
-                                <td>구분</td>
-                                <td>
-                                    <select name="type">
-                                        <option>구분</option>
-                                        <option>과일</option>
-                                        <option>야채</option>
-                                        <option>곡류</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>가격</td>
-                                <td><input type="text" name="price"/></td>
-                            </tr>
-                            <tr>
-                                <td>배송비</td>
-                                <td>
-                                    <label><input type="radio" name="delivery">2,000원</label>                                    
-                                    <label><input type="radio" name="delivery">3,000원</label>
-                                    <label><input type="radio" name="delivery">5,000원</label>
-                                    <label><input type="radio" name="delivery">무료</label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>재고</td>
-                                <td><input type="text" name="stock"/></td>
-                            </tr>
-                            <tr>
-                                <td>상품이미지</td>
-                                <td>
-                                    <p>
-                                        <span>상품목록 이미지(약 120 x 120)</span>
-                                        <input type="file" name="thumb120"/>
-                                    </p>
-                                    <p>
-                                        <span>기본정보 이미지(약 240 x 240)</span>
-                                        <input type="file" name="thumb240"/>
-                                    </p>
-                                    <p>
-                                        <span>상품설명 이미지(약 750 x Auto)</span>
-                                        <input type="file" name="thumb750"/>
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>기타</td>
-                                <td>
-                                    <textarea name="etc"></textarea>
-                                </td>
-                            </tr>
-                        </table>
 
-                        <p>
-                            <a href="./productList.html" class="btnCancel">취소</a>
-                            <input type="submit" value="상품등록"/>
-                        </p>
-                    </form>
-                </article>                
+                    <table border="0">
+                        <tr>
+                            <th><input type="checkbox" name="all"/></th>
+                            <th>사진</th>
+                            <th>상품번호</th>
+                            <th>상품명</th>
+                            <th>구분</th>
+                            <th>가격</th>
+                            <th>재고</th>
+                            <th>등록일</th>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name=""/></td>
+                            <td><img src="./images/sample_item1.jpg" class="thumb" alt="샘플1"></td>
+                            <td>1011</td>
+                            <td>사과 500g</td>
+                            <td>과일</td>
+                            <td>4,000원</td>
+                            <td>100</td>
+                            <td>2023-01-01</td>
+                        </tr>
+                    </table>
+
+                    <p>
+                        <a href="#" class="productDelete">선택삭제</a>
+                        <a href="./productRegister.html" class="productRegister">상품등록</a>
+                    </p>
+                    
+                    <p class="paging">
+                        <a href="#"><</a>
+                        <a href="#" class="on">[1]</a>
+                        <a href="#">[2]</a>
+                        <a href="#">[3]</a>
+                        <a href="#">[4]</a>
+                        <a href="#">[5]</a>
+                        <a href="#">></a>
+                    </p>
+
+                </article>
+
+                
             </section>
         </main>
         <footer>            

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../_header.jsp" %>
+
 <div id="sub">
     <div><img src="../images/sub_top_tit3.png" alt="CROP TALK"></div>
     <section class="croptalk">
@@ -15,7 +16,7 @@
         </aside>
         <article>
             <nav>
-                <img src="../images/sub_nav_tit_cate3_tit2.png" alt="텃밭가꾸기"/>
+                <img src="../images/sub_nav_tit_cate3_grow.png" alt="텃밭가꾸기"/>
                 <p>
                     HOME > 농작물이야기 > <em>텃밭가꾸기</em>
                 </p>

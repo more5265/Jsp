@@ -29,9 +29,9 @@
 <body>
     <div id="container">
         <header>
-            <a href="/Farmstory1" class="logo"><img src="../images/admin_logo.jpg" alt="로고"/></a>
+            <a href="./index.html" class="logo"><img src="./images/admin_logo.jpg" alt="로고"/></a>
             <p>
-                <a href="/Farmstory1/index.jsp">HOME |</a>
+                <a href="#">HOME |</a>
                 <a href="#">로그아웃 |</a>
                 <a href="#">고객센터</a>
             </p>

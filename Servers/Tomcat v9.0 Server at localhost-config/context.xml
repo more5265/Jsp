@@ -45,7 +45,7 @@
     	auth="Container"
     	type="javax.sql.DataSource"
     	driverClassName="com.mysql.cj.jdbc.Driver"
-    	url="jdbc:mysql://127.0.0.1:3306/Jboard"
+    	url="jdbc:mysql://127:0:0:1:3306/Jboard"
     	username="root"
     	password="1234"
     	maxTotal="13"
@@ -53,17 +53,18 @@
     	maxWaitMillis="3000"
     />  
     
-    	<Resource 
+        <Resource 
     	name="jdbc/FarmStory"
     	auth="Container"
     	type="javax.sql.DataSource"
     	driverClassName="com.mysql.cj.jdbc.Driver"
-    	url="jdbc:mysql://127.0.0.1:3306/FarmStory"
+    	url="jdbc:mysql://3.36.74.179:3306/FarmStory"
     	username="root"
-    	password="1234"
+    	password="@Anfrma3sus"
     	maxTotal="13"
     	maxIdle="13"
     	maxWaitMillis="3000"
-    />  
+    /> 
+    
     
 </Context>

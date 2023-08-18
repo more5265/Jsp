@@ -35,14 +35,14 @@ $(function(){
 		if(pass1 == pass2){
 			
 			if(pass1.match(rePass)){
-				$('.resultPass').css('color', 'green').text('사용 가능한 비밀번호 입니다.');
+				$('.resultPass').css('color', 'green').text('사용할 수 있는 비밀번호 입니다.');
 				isPassOk = true;
 			}else{
-				$('.resultPass').css('color', 'red').text('숫자, 영문, 특수문자를 조합한 5자리 이상이어야 합니다.');
+				$('.resultPass').css('color', 'red').text('비밀번호는 숫자, 영문, 특수문자 조합 5자리 이상이어야 합니다.');
 				isPassOk = false;
 			}
 		}else{
-			$('.resultPass').css('color', 'red').text('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
+			$('.resultPass').css('color', 'red').text('비밀번호가 일치하지 않습니다.');
 			isPassOk = false;
 		}
 	});

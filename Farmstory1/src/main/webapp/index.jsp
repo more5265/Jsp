@@ -1,5 +1,19 @@
+<%@page import="kr.farmstory1.dto.ArticleDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="kr.farmstory1.dao.ArticleDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp" %>
+<%
+	ArticleDAO dao = new ArticleDAO();
+	List<ArticleDTO> latests1 = dao.selectLatests("grow", 5);
+	List<ArticleDTO> latests2 = dao.selectLatests("school", 5);
+	List<ArticleDTO> latests3 = dao.selectLatests("story", 5);
+	
+	List<ArticleDTO> tablatests1 = dao.selectLatests("notice", 3);
+	List<ArticleDTO> tablatests2 = dao.selectLatests("qna", 3);
+	List<ArticleDTO> tablatests3 = dao.selectLatests("faq", 3);
+
+%>
 <main>
     <div class="slider">
         <ul>
@@ -24,11 +38,13 @@
             <a href="#"><img src="./images/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
             <img src="./images/main_latest1_img.jpg" alt="이미지"/>
             <table border="0">
+            	<% for(ArticleDTO latest : latests1){ %>
                 <tr>
                     <td>></td>
-                    <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
-                    <td>20-12-22</td>
+                    <td><a href="#"><%= latest.getTitle() %></a></td>
+                    <td><%= latest.getRdate() %></td>
                 </tr>
+                <% } %>
                 <tr>
                     <td>></td>
                     <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
