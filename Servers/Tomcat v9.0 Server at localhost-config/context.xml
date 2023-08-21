@@ -42,11 +42,11 @@
     
     
         <Resource 
-    	name="jdbc/FarmStory"
+    	name="jdbc/Farmstory"
     	auth="Container"
     	type="javax.sql.DataSource"
     	driverClassName="com.mysql.cj.jdbc.Driver"
-    	url="jdbc:mysql://15.164.230.253:3306/FarmStory"
+    	url="jdbc:mysql://15.164.230.253:3306/Farmstory"
     	username="root"
     	password="@anfrma3sus"
     	maxTotal="13"
