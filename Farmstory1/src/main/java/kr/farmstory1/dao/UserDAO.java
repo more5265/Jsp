@@ -163,6 +163,8 @@ public class UserDAO extends DBHelper {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		System.out.println(dto.getTerms());
+		System.out.println(dto.getPrivacy());
 		return dto;
 	}
 	
