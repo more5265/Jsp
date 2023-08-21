@@ -40,31 +40,32 @@
     	maxWaitMillis="3000"
     />  
     
-	<Resource 
-    	name="jdbc/Jboard"
-    	auth="Container"
-    	type="javax.sql.DataSource"
-    	driverClassName="com.mysql.cj.jdbc.Driver"
-    	url="jdbc:mysql://127:0:0:1:3306/Jboard"
-    	username="root"
-    	password="1234"
-    	maxTotal="13"
-    	maxIdle="13"
-    	maxWaitMillis="3000"
-    />  
     
         <Resource 
     	name="jdbc/FarmStory"
     	auth="Container"
     	type="javax.sql.DataSource"
     	driverClassName="com.mysql.cj.jdbc.Driver"
-    	url="jdbc:mysql://3.36.74.179:3306/FarmStory"
+    	url="jdbc:mysql://15.164.230.253:3306/FarmStory"
     	username="root"
-    	password="@Anfrma3sus"
+    	password="@anfrma3sus"
     	maxTotal="13"
     	maxIdle="13"
     	maxWaitMillis="3000"
     /> 
+    
+    	<Resource 
+    	name="jdbc/Jboard"
+    	auth="Container"
+    	type="javax.sql.DataSource"
+    	driverClassName="com.mysql.cj.jdbc.Driver"
+    	url="jdbc:mysql://15.164.230.253:3306/Jboard"
+    	username="root"
+    	password="@anfrma3sus"
+    	maxTotal="13"
+    	maxIdle="13"
+    	maxWaitMillis="3000"
+    />  
     
     
 </Context>
