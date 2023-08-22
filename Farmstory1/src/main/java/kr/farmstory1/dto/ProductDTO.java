@@ -1,13 +1,13 @@
 package kr.farmstory1.dto;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.UUID;
 
 public class ProductDTO {
-	
-	private int type;
+
 	private int pNo;
-	private int cate;
+	private int type;
 	private String pName;
 	private int price;
 	private int delivery;
@@ -18,13 +18,23 @@ public class ProductDTO {
 	private String thumb3;
 	private String seller;
 	private String etc;
+	private String rdate;
 	private String path;
+	
+	public ProductDTO() {
+		
+	}
 	
 	public ProductDTO(String path) {
 		this.path = path;
 	}
 	
-	
+	public int getpNo() {
+		return pNo;
+	}
+	public void setpNo(int pNo) {
+		this.pNo = pNo;
+	}
 	public int getType() {
 		return type;
 	}
@@ -34,18 +44,7 @@ public class ProductDTO {
 	public void setType(String type) {
 		this.type = Integer.parseInt(type);
 	}
-	public int getpNo() {
-		return pNo;
-	}
-	public void setpNo(int pNo) {
-		this.pNo = pNo;
-	}
-	public int getCate() {
-		return cate;
-	}
-	public void setCate(int cate) {
-		this.cate = cate;
-	}
+	
 	public String getpName() {
 		return pName;
 	}
@@ -54,6 +53,10 @@ public class ProductDTO {
 	}
 	public int getPrice() {
 		return price;
+	}
+	public String getPriceWithComma() {
+		DecimalFormat df = new DecimalFormat("###,###");
+		return df.format(price);
 	}
 	public void setPrice(int price) {
 		this.price = price;
@@ -89,18 +92,27 @@ public class ProductDTO {
 		return thumb1;
 	}
 	public void setThumb1(String thumb1) {
+		this.thumb1 = thumb1;
+	}
+	public void setThumb1ForRename(String thumb1) {
 		this.thumb1 = fileRename(thumb1);
 	}
 	public String getThumb2() {
 		return thumb2;
 	}
 	public void setThumb2(String thumb2) {
+		this.thumb2 = thumb2;
+	}
+	public void setThumb2ForRename(String thumb2) {
 		this.thumb2 = fileRename(thumb2);
 	}
 	public String getThumb3() {
 		return thumb3;
 	}
 	public void setThumb3(String thumb3) {
+		this.thumb3 = thumb3;
+	}
+	public void setThumb3ForRename(String thumb3) {
 		this.thumb3 = fileRename(thumb3);
 	}
 	public String getSeller() {
@@ -115,19 +127,26 @@ public class ProductDTO {
 	public void setEtc(String etc) {
 		this.etc = etc;
 	}
+	public String getRdate() {
+		return rdate;
+	}
+	public void setRdate(String rdate) {
+		this.rdate = rdate;
+	}
 	
 	public String fileRename(String thumb) {
-		int i  = thumb.lastIndexOf(".");
+		int i = thumb.lastIndexOf(".");
 		String ext = thumb.substring(i);
 		
 		String uuid = UUID.randomUUID().toString();
 		String sName = uuid + ext;
-
+		
 		File f1 = new File(path + "/" + thumb);
 		File f2 = new File(path + "/" + sName);
 		f1.renameTo(f2);
 		
 		return sName;
 	}
-}
 	
+	
+}

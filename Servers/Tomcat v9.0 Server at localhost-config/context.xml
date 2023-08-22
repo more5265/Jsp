@@ -26,6 +26,7 @@
     <!--
     <Manager pathname="" />
     -->
+    
     <!-- 커넥션 풀 설정 -->
     <Resource 
     	name="jdbc/userdb"
@@ -48,7 +49,7 @@
     	driverClassName="com.mysql.cj.jdbc.Driver"
     	url="jdbc:mysql://15.164.230.253:3306/Farmstory"
     	username="root"
-    	password="@anfrma3sus"
+    	password="@Anfrma3sus"
     	maxTotal="13"
     	maxIdle="13"
     	maxWaitMillis="3000"
@@ -60,8 +61,8 @@
     	type="javax.sql.DataSource"
     	driverClassName="com.mysql.cj.jdbc.Driver"
     	url="jdbc:mysql://15.164.230.253:3306/Jboard"
-    	username="root"
-    	password="@anfrma3sus"
+    	username="hwang"
+    	password="@Anfrma3sus"
     	maxTotal="13"
     	maxIdle="13"
     	maxWaitMillis="3000"

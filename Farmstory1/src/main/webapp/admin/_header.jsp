@@ -3,10 +3,10 @@
 <%
 	UserDTO sessUser = (UserDTO) session.getAttribute("sessUser");
 
-	if(sessUser == null){
-		response.sendRedirect("/Farmstory1/user/login.jsp?success=101");
-		return;
-	}
+	//if(sessUser == null){
+	//	response.sendRedirect("/Farmstory1/user/login.jsp?success=101");
+	//	return;
+	//}
 
 %>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@
         <header>
             <a href="./index.jsp" class="logo"><img src="./images/admin_logo.jpg" alt="로고"/></a>
             <p>
-                <a href="/">HOME |</a>
+                <a href="/Farmstory1">HOME |</a>
                 <a href="#">로그아웃 |</a>
                 <a href="#">고객센터</a>
             </p>
