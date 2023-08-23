@@ -54,10 +54,6 @@ public class ProductDTO {
 	public int getPrice() {
 		return price;
 	}
-	public String getPriceWithComma() {
-		DecimalFormat df = new DecimalFormat("###,###");
-		return df.format(price);
-	}
 	public void setPrice(int price) {
 		this.price = price;
 	}
@@ -128,7 +124,7 @@ public class ProductDTO {
 		this.etc = etc;
 	}
 	public String getRdate() {
-		return rdate;
+		return rdate.substring(0, 10);
 	}
 	public void setRdate(String rdate) {
 		this.rdate = rdate;

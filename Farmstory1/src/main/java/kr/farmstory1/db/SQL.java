@@ -38,7 +38,10 @@ public class SQL {
 												+ "`regip`=?,"
 												+ "`rdate`=NOW()";
 	
-	public final static String SELECT_LATESTS = "SELECT `no`, `title`, `rdate` FROM `Article` WHERE `parent`=0 AND `cate`=? Order BY `no` DESC LIMIT ?";
+	public final static String SELECT_LATESTS = "SELECT `no`, `title`, `rdate` FROM `Article` "
+												+ "WHERE `parent`=0 AND `cate`=? "
+												+ "Order BY `no` DESC LIMIT ?";
+	
 	public final static String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
 	public final static String SELECT_ARTICLES = "SELECT "
 												+ "a.*, "
@@ -68,9 +71,9 @@ public class SQL {
 	public final static String DELETE_ARTICLE = "DELETE FROM `Article` WHERE `no`=? OR `parent`=?";
 	public final static String DELETE_COMMENT = "DELETE FROM `Article` WHERE `no`=?";
 	
-	// Product
 	
-	public final static String INSERT_PRODUCT = "INSERT INTO `Product` SET"
+	// Product
+	public final static String INSERT_PRODUCT = "INSERT INTO `Product` SET "
 												+ "`type`=?,"
 												+ "`pName`=?,"
 												+ "`price`=?,"
@@ -82,13 +85,28 @@ public class SQL {
 												+ "`seller`=?,"
 												+ "`etc`=?,"
 												+ "`rdate`=NOW()";
-												
+	
+	
+	public final static String SELECT_PRODUCT = "SELECT * FROM `Product` WHERE `pNo`=?";
 	public final static String SELECT_PRODUCTS_ALL = "SELECT * FROM `Product` WHERE `stock` > 0 LIMIT ?, 10";
-	
-	public final static String SELECT_PRODUCTS_TYPE = "SELECT * FORM `Product` WHERE `stock` > 0 AND `type`=? LIMIT ?, 10";	
-
-	
+	public final static String SELECT_PRODUCTS_TYPE = "SELECT * FROM `Product` WHERE `stock` > 0 AND `type`=? LIMIT ?, 10";
 	public final static String SELECT_COUNT_PRODUCTS_ALL = "SELECT COUNT(*) FROM `Product` WHERE `stock` > 0";
-	
 	public final static String SELECT_COUNT_PRODUCTS_TYPE = "SELECT COUNT(*) FROM `Product` WHERE `stock` > 0 AND `type`=?";
+	
+	// Order
+	public static final String INSERT_ORDER = "INSERT INTO `Order` SET "
+											+ "`orderProduct`=?,"
+											+ "`orderCount`=?,"
+											+ "`orderDelivery`=?,"
+											+ "`orderPrice`=?,"
+											+ "`orderTotal`=?,"
+											+ "`receiver`=?,"
+											+ "`hp`=?,"
+											+ "`zip`=?,"
+											+ "`addr1`=?,"
+											+ "`addr2`=?,"
+											+ "`orderEtc`=?,"
+											+ "`orderUser`=?,"
+											+ "`orderDate`=NOW()";
+	
 }
