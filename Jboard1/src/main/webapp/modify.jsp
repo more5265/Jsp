@@ -19,7 +19,7 @@
 				<table>
 					<tr>
 						<td>아이디</td>
-						<td><input type="text" name="uid" readonly value="${}"/></td>
+						<td><input type="text"/></td>
 					</tr>
 					<tr>
 						<td>이름</td>

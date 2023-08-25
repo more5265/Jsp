@@ -6,14 +6,16 @@
 		<title>welcome</title>
 		<!-- 
 			날짜 : 2023/08/24
-			이름 : 
+			이름 : 이황성
 			내용 : MVC 실습하기
-		 -->
+		-->
 	</head>
 	<body>
-		<h1>welcome</h1>
-		
-		
-		
+		<h1>Welcome</h1>
+		<a href="/Ch10">메인</a>
+		<a href="/Ch10/hello.do">hello</a>
+		<a href="/Ch10/welcome.do">welcome</a>
+		<a href="/Ch10/greeting.do">greeting</a>
+
 	</body>
 </html>
