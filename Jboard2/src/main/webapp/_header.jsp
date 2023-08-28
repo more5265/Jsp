@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>글보기</title>
-    <link rel="stylesheet" href="./css/style.css"/>
+    <link rel="stylesheet" href="/Jboard2/css/style.css"/>
 </head>
 <body>
     <div id="wrapper">

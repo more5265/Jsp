@@ -21,8 +21,8 @@
 		</table>
 
 		<div>
-			<a href="#" class="btn btnRemove">삭제</a> <a href="./modify.html"
-				class="btn btnModify">수정</a> <a href="./list.html"
+			<a href="#" class="btn btnRemove">삭제</a> <a href="./modify.jsp"
+				class="btn btnModify">수정</a> <a href="./list.jsp"
 				class="btn btnList">목록</a>
 		</div>
 

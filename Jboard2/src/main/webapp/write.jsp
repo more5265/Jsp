@@ -21,7 +21,7 @@
 			</table>
 
 			<div>
-				<a href="./list.html" class="btn btnCancel">취소</a> <input
+				<a href="./list.jsp" class="btn btnCancel">취소</a> <input
 					type="submit" value="작성완료" class="btn btnComplete" />
 			</div>
 		</form>

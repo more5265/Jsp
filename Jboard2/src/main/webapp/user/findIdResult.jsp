@@ -27,8 +27,8 @@
 		<p>고객님의 정보와 일치하는 아이디 입니다.</p>
 
 		<div>
-			<a href="./login.html" class="btn btnCancel">로그인</a> <a
-				href="./register.html" class="btn btnNext">비밀번호 찾기</a>
+			<a href="./login.jsp" class="btn btnCancel">로그인</a> <a
+				href="./register.jsp" class="btn btnNext">비밀번호 찾기</a>
 		</div>
 	</section>
 </main>
