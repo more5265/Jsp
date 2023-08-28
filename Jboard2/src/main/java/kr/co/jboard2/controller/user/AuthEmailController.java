@@ -20,7 +20,7 @@ import kr.co.jboard2.service.UserService;
 @WebServlet("/user/authEmail.do")
 public class AuthEmailController extends HttpServlet {
 
-	private static final long serialVersionUID = 9094836002104883300L;
+	private static final long serialVersionUID = 1123577250255862359L;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	private UserService service = UserService.getInstance();

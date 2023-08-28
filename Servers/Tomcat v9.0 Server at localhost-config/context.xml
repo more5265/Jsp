@@ -78,4 +78,17 @@
     	maxIdle="13"
     	maxWaitMillis="3000"
     	/>
+    	
+    			<resource
+    	name="jdbc/Jboard"
+    	auth="Container"
+    	type="javax.sql.DataSource"
+    	driverclassname="com.mysql.cj.jdbc.Driver"
+    	url="jdbc:mysql://54.180.109.158:3306/Jboard"
+    	username="more"
+    	password="@Anfrma3sus"
+    	maxTotal="13"
+    	maxIdle="13"
+    	maxWaitMillis="3000"
+    	/>
 </Context>
