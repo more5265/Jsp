@@ -3,15 +3,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>글보기</title>
-    <link rel="stylesheet" href="/Jboard2/css/style.css"/>
+    <title>user</title>
+    <link rel="stylesheet" href="./css/style.css"/>
 </head>
 <body>
     <div id="wrapper">
         <header>
             <h3>Board System v2.0</h3>
             <p>
-                <span>홍길동</span>님 반갑습니다.
-                <a href="#">[로그아웃]</a>
+                <span><a href="/Jboard2/user/myInfo.do">${sessUser.nick}</a>></span>님 반갑습니다.
+                <a href="/Jboard2/user/logout.do">[로그아웃]</a>
             </p>
         </header>

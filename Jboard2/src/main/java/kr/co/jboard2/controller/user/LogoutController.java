@@ -1,24 +1,27 @@
-package kr.co.jboard2.controller;
+package kr.co.jboard2.controller.user;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-@WebServlet("/view.do")
-public class ViewController extends HttpServlet{
+import javax.servlet.http.HttpSession;
 
 
-	private static final long serialVersionUID = 2120022050925682570L;
+@WebServlet("/user/logout.do")
+public class LogoutController extends HttpServlet {
+
+	private static final long serialVersionUID = 559190195010520226L;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("view.jsp");
-		dispatcher.forward(req, resp);
+		HttpSession session = req.getSession();
+		session.invalidate();
+		
+		resp.sendRedirect("/Jboard2/user/logout.do?success=101");
 	}
+	
 }

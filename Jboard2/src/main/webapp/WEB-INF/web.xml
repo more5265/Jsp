@@ -10,7 +10,7 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
-    <!-- MVC 보안설정 -->
+  <!-- MVC 보안설정 -->
   <security-constraint>
   	<display-name>Prohibit Model1</display-name>
   	<web-resource-collection>
@@ -42,5 +42,6 @@
   <filter-mapping>
   	<filter-name>SetCharacterEncodingFilter</filter-name>
   	<url-pattern>/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping>  
+  
 </web-app>

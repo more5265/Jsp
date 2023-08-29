@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/modify.do")
 public class ModifyController extends HttpServlet {
 
-	private static final long serialVersionUID = -3556762594032868092L;
-	
+	private static final long serialVersionUID = 8989721235114878879L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

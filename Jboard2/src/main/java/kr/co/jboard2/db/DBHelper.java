@@ -20,6 +20,7 @@ public class DBHelper {
 	public Connection getConnection() {
 		
 		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			Context ctx = (Context) new InitialContext().lookup("java:comp/env");
 			DataSource ds = (DataSource) ctx.lookup("jdbc/Jboard");
 			conn = ds.getConnection();

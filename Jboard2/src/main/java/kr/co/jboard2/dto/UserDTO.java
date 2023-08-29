@@ -82,10 +82,10 @@ public class UserDTO {
 	public void setRegip(String regip) {
 		this.regip = regip;
 	}
-	public String getRegData() {
+	public String getRegDate() {
 		return regDate;
 	}
-	public void setRegData(String regData) {
+	public void setRegDate(String regData) {
 		this.regDate = regData;
 	}
 	public String getLeaveDate() {
