@@ -3,7 +3,6 @@ package kr.co.jboard2.controller.user;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.mail.Service;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +19,7 @@ import kr.co.jboard2.service.UserService;
 @WebServlet("/user/authEmail.do")
 public class AuthEmailController extends HttpServlet {
 
-	private static final long serialVersionUID = 1123577250255862359L;
+	private static final long serialVersionUID = 9094836002104883300L;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	private UserService service = UserService.getInstance();
@@ -28,38 +27,46 @@ public class AuthEmailController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String name = req.getParameter("name");
+		String type  = req.getParameter("type");
+		String uid   = req.getParameter("uid");
+		String name  = req.getParameter("name");
 		String email = req.getParameter("email");
 		
 		int result = 0;
 		int status = 0;
 		
-		if(name == null) {
-			// 회원가입 때 이메일 인증
+		if(type.equals("REGISTER")) {
+			// 회원가입할 때 이메일 인증
 			result = service.selectCountEmail(email);
-			status = service.sendCodeByEmail(email);
-		}else {
-			// 아이디찾기 때 이메일 인증
+			
+			if(result == 0) {
+				status = service.sendCodeByEmail(email);	
+			}
+		}else if(type.equals("FIND_ID")){
+			// 아이디 찾기 할 때 이메일 인증
 			result = service.selectCountNameAndEmail(name, email);
-		}
 			
 			if(result == 1) {
-				 status = service.sendCodeByEmail(email);
+				status = service.sendCodeByEmail(email);
 			}
+		}else if(type.equals("FIND_PASS")){
+			// 비밀번호 찾기 할 때 이메일 인증
+			result = service.selectCountUidAndEmail(uid, email);
 			
-			
-			// JSON 생성(code를)
-			JsonObject json = new JsonObject();
-			json.addProperty("result", result);
-			json.addProperty("status", status);
-			
-			// JSON 출력
-			PrintWriter writer = resp.getWriter();
-			writer.print(json.toString());
-			 
-			
+			if(result == 1) {
+				status = service.sendCodeByEmail(email);
+			}
 		}
 		
+		// JSON 생성
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		json.addProperty("status", status);
+		
+		// JSON 출력
+		PrintWriter writer = resp.getWriter();
+		writer.print(json.toString());
+	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -70,13 +77,13 @@ public class AuthEmailController extends HttpServlet {
 		int result = service.cofirmCodeByEmail(code);
 		logger.info("result : " + result);
 		
-		// JSON 생성(code를)
+		// JSON 생성
 		JsonObject json = new JsonObject();
 		json.addProperty("result", result);
 		
 		// JSON 출력
 		PrintWriter writer = resp.getWriter();
 		writer.print(json.toString());
-		
+	
 	}
 }

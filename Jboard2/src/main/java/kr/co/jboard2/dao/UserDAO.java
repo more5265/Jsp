@@ -129,8 +129,7 @@ public class UserDAO extends DBHelper {
 		return result;
 	}
 	
-public int selectCountNameAndEmail(String name, String email) {
-		
+	public int selectCountNameAndEmail(String name, String email) {
 		int result = 0;
 		
 		try {
@@ -138,15 +137,37 @@ public int selectCountNameAndEmail(String name, String email) {
 			psmt = conn.prepareStatement(SQL.SELECT_COUNT_NAME_EMAIL);
 			psmt.setString(1, name);
 			psmt.setString(2, email);
-			rs = psmt.executeQuery();
 			
+			rs = psmt.executeQuery();
 			if(rs.next()) {
 				result = rs.getInt(1);
 			}
 			close();
 			
 		}catch (Exception e) {
-			logger.error("selectCountHp() error : " + e.getMessage());
+			logger.error("selectCountNameAndEmail() error : " + e.getMessage());
+		}
+		
+		return result;
+	}
+	
+	public int selectCountUidAndEmail(String uid, String email) {
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_UID_EMAIL);
+			psmt.setString(1, uid);
+			psmt.setString(2, email);
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			close();
+			
+		}catch (Exception e) {
+			logger.error("selectCountUidAndEmail() error : " + e.getMessage());
 		}
 		
 		return result;
@@ -161,7 +182,6 @@ public int selectCountNameAndEmail(String name, String email) {
 			psmt = conn.prepareStatement(SQL.SELECT_USER);
 			psmt.setString(1, uid);
 			psmt.setString(2, pass);
-			psmt.executeQuery();
 			
 			rs = psmt.executeQuery();
 			if(rs.next()) {
@@ -179,27 +199,25 @@ public int selectCountNameAndEmail(String name, String email) {
 				dto.setRegip(rs.getString(11));
 				dto.setRegDate(rs.getString(12));
 				dto.setLeaveDate(rs.getString(13));
-			}
+			}			
 			close();
 			
 		}catch (Exception e) {
 			logger.error("selectUser() error : " + e.getMessage());
 		}
 		
-		
 		return dto;
 	}
 	
-	public UserDTO selectUserByNameAndEmail(String uid, String email) {
+	public UserDTO selectUserByNameAndEmail(String name, String email) {
 		
 		UserDTO dto = null;
 		
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_USER);
-			psmt.setString(1, uid);
+			psmt = conn.prepareStatement(SQL.SELECT_USER_BY_NAME_AND_EMAIL);
+			psmt.setString(1, name);
 			psmt.setString(2, email);
-			psmt.executeQuery();
 			
 			rs = psmt.executeQuery();
 			if(rs.next()) {
@@ -217,16 +235,17 @@ public int selectCountNameAndEmail(String name, String email) {
 				dto.setRegip(rs.getString(11));
 				dto.setRegDate(rs.getString(12));
 				dto.setLeaveDate(rs.getString(13));
-			}
+			}			
 			close();
 			
 		}catch (Exception e) {
-			logger.error("selectUser() error : " + e.getMessage());
+			logger.error("selectUserByNameAndEmail() error : " + e.getMessage());
 		}
-		
 		
 		return dto;
 	}
+	
+	
 	
 	public List<UserDTO> selectUsers() {
 		return null;
@@ -234,6 +253,19 @@ public int selectCountNameAndEmail(String name, String email) {
 	
 	public void updateUser(UserDTO dto) {
 		
+	}
+	
+	public void updateUserPass(String uid, String pass) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_USER_PASS);
+			psmt.setString(1, pass);
+			psmt.setString(2, uid);
+			psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			logger.error("updateUserPass() error : " + e.getMessage());
+		}
 	}
 	
 	public void deleteUser(String uid) {

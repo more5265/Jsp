@@ -1,7 +1,6 @@
 package kr.co.jboard2.dto;
 
 public class UserDTO {
-	
 	private String uid;
 	private String pass;
 	private String name;
@@ -85,8 +84,8 @@ public class UserDTO {
 	public String getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(String regData) {
-		this.regDate = regData;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 	public String getLeaveDate() {
 		return leaveDate;
@@ -94,6 +93,4 @@ public class UserDTO {
 	public void setLeaveDate(String leaveDate) {
 		this.leaveDate = leaveDate;
 	}
-
 }
-

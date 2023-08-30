@@ -12,7 +12,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.tomcat.util.digester.Digester.GeneratedCodeLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,16 +19,16 @@ import kr.co.jboard2.dao.UserDAO;
 import kr.co.jboard2.dto.UserDTO;
 
 public class UserService {
+	
 	private static UserService instance = new UserService();
 	public static UserService getInstance() {
 		return instance;
 	}
 	private UserService() {}
 	
-	private static String generatedCode;
-
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	private UserDAO dao = UserDAO.getInstance();
+	private String generatedCode;
 	
 	public void insertUser(UserDTO dto) {
 		dao.insertUser(dto);
@@ -52,7 +51,11 @@ public class UserService {
 	}
 	
 	public int selectCountNameAndEmail(String name, String email) {
-		return dao.selectCountNameAndEmail(name, email);
+		return dao.selectCountNameAndEmail(name, email);				
+	}
+	
+	public int selectCountUidAndEmail(String uid, String email) {
+		return dao.selectCountUidAndEmail(uid, email);
 	}
 	
 	public UserDTO selectUser(String uid, String pass) {
@@ -60,7 +63,7 @@ public class UserService {
 	}
 	
 	public UserDTO selectUserByNameAndEmail(String name, String email) {
-		return dao.selectUserByNameAndEmail(name, email);
+		return dao.selectUserByNameAndEmail(name, email);				
 	}
 	
 	public List<UserDTO> selectUsers() {
@@ -71,6 +74,10 @@ public class UserService {
 		dao.updateUser(dto);
 	}
 	
+	public void updateUserPass(String uid, String pass) {
+		dao.updateUserPass(uid, pass);
+	}
+	
 	public void deleteUser(String uid) {
 		dao.deleteUser(uid);
 	}
@@ -78,14 +85,14 @@ public class UserService {
 	public int sendCodeByEmail(String receiver) {
 		
 		// 인증코드 생성
-		int code = ThreadLocalRandom.current().nextInt(100000, 1000000);
-		generatedCode = ""+code;
-		 
+		int code = ThreadLocalRandom.current().nextInt(100000, 1000000);		
+		generatedCode = String.valueOf(code);
+		
 		// 기본정보
-		String sender = "more5265@gmail.com";
-		String password = "uogafvpxlrwveozr";
+		String sender = "chhak0503@gmail.com";
+		String password = "hmdlvbblvplewjhj";
 		String title = "Jboard2 인증코드 입니다.";
-		String content = "<h1>인증코드는 "+ generatedCode + "</h1>";
+		String content = "<h1>인증코드는 " + code + "</h1>";
 		
 		// Gmail SMTP 서버 설정
 		Properties props = new Properties();
@@ -109,28 +116,33 @@ public class UserService {
 		Message message = new MimeMessage(gmailSession);
 		
 		try{
-			logger.info("here ...");
+			logger.info("here1...");
 			message.setFrom(new InternetAddress(sender, "보내는 사람", "UTF-8"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
 			message.setSubject(title);
 			message.setContent(content, "text/html;charset=UTF-8");
 			Transport.send(message);
-			
 			status = 1;
 			
 		}catch(Exception e){
 			status = 0;
 			logger.error("sendCodeByEmail() error : " + e.getMessage());
 		}
-			return status;
-	}	// sendCodeByEmail end
+		
+		return status;
+	} // sendCodeByEmail end
 	
 	public int cofirmCodeByEmail(String code) {
 		
-		if(code.equals(generatedCode )) {
+		if(code.equals(generatedCode)) {
+			logger.info("return 1...");
 			return 1;
 		}else {
+			logger.info("return 0...");
 			return 0;
 		}
 	}
+	
+	
+	
 }

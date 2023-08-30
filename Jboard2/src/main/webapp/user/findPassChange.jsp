@@ -2,12 +2,12 @@
 <%@ include file="./_header.jsp"%>
 <main id="user">
 	<section class="find findPassChange">
-		<form action="#">
+		<form action="/Jboard2/user/findPassChange.do" method="post">
 			<table border="0">
 				<caption>비밀번호 변경</caption>
 				<tr>
 					<td>아이디</td>
-					<td>honggildong</td>
+					<td${user.Uid}</td>
 				</tr>
 				<tr>
 					<td>새 비밀번호</td>
